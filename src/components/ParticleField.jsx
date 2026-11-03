@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { particlePalette } from '../hooks/particlePalette'
 
+// Density: one particle per AREA_PER_PARTICLE square pixels of screen, capped at MAX_PARTICLES.
+// Lower the area (or raise the cap) for a busier background.
+const AREA_PER_PARTICLE = 7000
+const MAX_PARTICLES = 220
+
 /** Drifting particle network on a full-screen canvas; particles shy away from the pointer. */
 export function ParticleField({ animate = true }) {
   const canvasRef = useRef(null)
@@ -18,7 +23,7 @@ export function ParticleField({ animate = true }) {
     const size = () => {
       W = canvas.width = innerWidth * DPR
       H = canvas.height = innerHeight * DPR
-      const n = Math.min(110, Math.floor((innerWidth * innerHeight) / 14000))
+      const n = Math.min(MAX_PARTICLES, Math.floor((innerWidth * innerHeight) / AREA_PER_PARTICLE))
       particles = Array.from({ length: n }, () => ({
         x: Math.random() * W,
         y: Math.random() * H,
