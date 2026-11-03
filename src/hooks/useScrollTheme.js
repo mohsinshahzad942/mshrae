@@ -117,6 +117,9 @@ export function useScrollTheme(dimRef) {
     return () => {
       removeEventListener('scroll', onScroll)
       removeEventListener('resize', paint)
+      // Leave no scroll-driven colours behind for other pages.
+      for (const v of ['--bg', '--surf', '--halo', '--aur', ...Object.values(VARS)]) root.style.removeProperty(v)
+      root.style.colorScheme = ''
     }
   }, [dimRef])
 }
