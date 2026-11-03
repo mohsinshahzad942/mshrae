@@ -1,33 +1,28 @@
 import { useEffect, useState } from 'react'
 
 /**
- * Tracks which section is currently in view, so the nav can highlight it.
- * Uses IntersectionObserver rather than scroll listeners for performance.
+ * Tracks the section crossing the middle of the viewport. Also writes it to
+ * <body data-scene>, which the CSS uses to shift the aurora colours per section.
  */
-export function useActiveSection(ids) {
-  const [active, setActive] = useState(null)
-  const key = ids.join('|')
+export function useActiveSection(selector = 'section[id], header#top') {
+  const [active, setActive] = useState('top')
 
   useEffect(() => {
-    const elements = key
-      .split('|')
-      .map((id) => document.getElementById(id))
-      .filter(Boolean)
-    if (!elements.length || !('IntersectionObserver' in window)) return
-
+    if (!('IntersectionObserver' in window)) return
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-        if (visible.length) setActive(visible[0].target.id)
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            document.body.dataset.scene = entry.target.id
+            setActive(entry.target.id)
+          }
+        }
       },
-      // A band across the upper-middle of the viewport decides what counts as "current".
-      { rootMargin: '-30% 0px -60% 0px' },
+      { rootMargin: '-45% 0px -50% 0px' },
     )
-    elements.forEach((el) => observer.observe(el))
+    document.querySelectorAll(selector).forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [key])
+  }, [selector])
 
   return active
 }
