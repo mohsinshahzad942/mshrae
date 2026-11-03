@@ -2,7 +2,7 @@
 // The anon key is designed to be public: Row Level Security in the database decides
 // what it can do (submit applications only; reading them requires the admin login).
 // GitHub Actions can override these with VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY.
-export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || ''
+export const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://whhxasnkwuewsywaijlh.supabase.co'
 export const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
 // Admin usernames map to the email of their Supabase Auth account. Passwords are never stored here.
