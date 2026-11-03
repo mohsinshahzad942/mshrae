@@ -1,0 +1,18 @@
+name: Check application database
+
+on:
+  push:
+    branches: [apply-for-a-job]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/smoke-test.mjs
