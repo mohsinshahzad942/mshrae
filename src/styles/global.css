@@ -290,3 +290,33 @@ tbody tr:hover,tbody tr.on,tbody tr:focus-visible{background:var(--glass-hi);out
 .detail dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
 @media (max-width:560px){.detail dl{grid-template-columns:1fr;gap:2px}.detail dd{margin-bottom:10px}}
 .detail-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- Light theme (application page): white base, pastel colours slowly fading through ---------- */
+:root:has(.page.light){--bg:#ffffff;color-scheme:light}
+.page.light{
+  --bg:#ffffff;--ink:#0b1f3a;--muted:#475569;--line:rgba(11,31,58,.14);--glass:rgba(11,31,58,.035);--glass-hi:rgba(11,31,58,.07);
+  --c1:#0e607a;--c2:#1d4ed8;--c3:#046c4e;--card:rgba(255,255,255,.78);--mark:#8a6100;
+  position:relative;isolation:isolate;overflow:hidden;background:#fff;color:var(--ink)}
+.page.light nav,.page.light .page-main{position:relative;z-index:1}
+.pastel{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;animation:pastel-hue 40s linear infinite}
+.pastel i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(70px);opacity:.8}
+.pastel .p1{background:radial-gradient(circle,#bfe9ff,transparent 65%);top:-25vmax;left:-20vmax;animation:pastel-a 18s ease-in-out infinite alternate,pastel-fade 11s ease-in-out infinite}
+.pastel .p2{background:radial-gradient(circle,#d9ccff,transparent 65%);bottom:-30vmax;right:-25vmax;animation:pastel-b 22s ease-in-out infinite alternate,pastel-fade 13s ease-in-out -4s infinite}
+.pastel .p3{background:radial-gradient(circle,#c8f5df,transparent 65%);top:20%;left:30%;width:55vmax;height:55vmax;animation:pastel-c 26s ease-in-out infinite alternate,pastel-fade 15s ease-in-out -8s infinite}
+@keyframes pastel-a{to{transform:translate(35vw,30vh) scale(1.2)}}
+@keyframes pastel-b{to{transform:translate(-40vw,-25vh) scale(1.15)}}
+@keyframes pastel-c{0%{transform:translate(-25vw,-15vh) scale(.9)}100%{transform:translate(20vw,20vh) scale(1.25)}}
+@keyframes pastel-fade{0%,100%{opacity:.4}50%{opacity:.95}}
+@keyframes pastel-hue{to{filter:hue-rotate(360deg)}}
+.page.light .panel{background:rgba(255,255,255,.72);box-shadow:0 10px 40px rgba(11,31,58,.08);backdrop-filter:blur(12px)}
+.page.light .field input,.page.light .field select,.page.light .field textarea{background:rgba(255,255,255,.9);color:var(--ink)}
+.page.light .field input:focus,.page.light .field select:focus,.page.light .field textarea:focus{box-shadow:0 0 0 3px rgba(14,96,122,.18)}
+.page.light .field select option{background:#fff}
+.page.light .file-drop{background:rgba(255,255,255,.6)}
+.page.light .btn{background:rgba(255,255,255,.7)}
+.page.light .btn.primary{background:var(--grad);color:#fff}
+.page.light .btn:hover{box-shadow:0 0 24px rgba(29,78,216,.25)}
+.page.light .logo i{background:var(--c1);box-shadow:0 0 10px var(--c1)}
+.page.light .form-error{color:#b42318}
+.page.light .notice{background:rgba(255,227,107,.2);border-color:rgba(138,97,0,.35)}
+:root:has(.page) body{margin:0}

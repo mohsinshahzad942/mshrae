@@ -68,7 +68,7 @@ export default function Apply() {
 
   if (state?.ok) {
     return (
-      <PageShell kicker="Application received" title="Thank you!">
+      <PageShell kicker="Application received" title="Thank you!" theme="light">
         <div className="panel form-done" role="status">
           <p>Your application has been sent. We'll review it and get back to you if your profile is a match.</p>
           <Link to="/" className="btn primary">
@@ -80,7 +80,7 @@ export default function Apply() {
   }
 
   return (
-    <PageShell kicker="Careers" title="Apply for a Job">
+    <PageShell kicker="Careers" title="Apply for a Job" theme="light">
       <p className="page-intro">
         Fill in your details and attach your CV. Fields marked * are required. Your information is stored securely and
         only seen by the HR team.
