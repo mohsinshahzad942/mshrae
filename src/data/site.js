@@ -15,7 +15,6 @@ export const profile = {
   email: 'mohsinshahzad942@gmail.com',
   phone: '+971 52 854 9253',
   whatsapp: 'https://wa.me/971528549253',
-  photo: 'photo.jpg',
   orbTags: ['◆ 9+ yrs in HR', '◆ WPS · EOSB'],
 }
 

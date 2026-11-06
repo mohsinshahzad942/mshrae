@@ -1,9 +1,10 @@
 import { profile } from '../data/site'
 import { useTypewriter } from '../hooks/useTypewriter'
+// Imported so the built file name includes a content hash: a new photo always busts browser caches.
+import photo from '../assets/photo.jpg'
 
 export function Hero({ animate }) {
   const typed = useTypewriter(profile.roles, { enabled: animate })
-  const photo = `${import.meta.env.BASE_URL}${profile.photo}`
 
   return (
     <header className="hero" id="top">

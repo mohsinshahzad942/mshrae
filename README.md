@@ -18,7 +18,7 @@ npm run lint
 
 ## Editing content
 
-All text lives in `src/data/site.js`: profile, roles for the typing effect, experience, highlights, skills and contact details. The portrait is `public/photo.jpg`.
+All text lives in `src/data/site.js`: profile, roles for the typing effect, experience, highlights, skills and contact details. The portrait is `src/assets/photo.jpg`.
 
 ## Structure
 
