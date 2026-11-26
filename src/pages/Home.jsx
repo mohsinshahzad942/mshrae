@@ -37,10 +37,10 @@ export default function Home() {
       <ParticleField animate={animate} />
       {showIntro && <Intro onDone={finishIntro} />}
       <Backdrop dimRef={dimRef} />
-      <Nav active={active} />
+      <Nav active={active} animate={animate} />
       <main>
         <div className="pin">
-          <Hero animate={animate} />
+          <Hero animate={animate} ready={!showIntro} />
           {showIntro && <div className="pin-space" aria-hidden="true" />}
         </div>
         <Marquee />

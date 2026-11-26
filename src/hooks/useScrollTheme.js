@@ -2,29 +2,29 @@ import { useEffect } from 'react'
 import { particlePalette } from './particlePalette'
 
 /*
- * Scroll-linked theme: the background walks black → navy → blue, then crosses quickly to sky → white.
+ * Scroll-linked theme: the background walks graphite → deep indigo, then crosses quickly to pale grey → white.
  * Text never fades with it: each frame picks whichever text palette has the higher contrast against the
  * current background (no blending), and a soft halo is added only while the background is mid-tone.
  * Everything is written as CSS custom properties on <html>, so React never re-renders on scroll.
  */
 const STOPS = [
-  [0, [5, 7, 13]],
-  [0.22, [10, 25, 49]],
-  [0.48, [19, 58, 104]],
-  [0.56, [30, 80, 140]],
-  [0.62, [200, 222, 240]],
-  [0.8, [236, 243, 249]],
-  [1, [255, 255, 255]],
+  [0, [9, 9, 11]],
+  [0.22, [14, 14, 20]],
+  [0.48, [22, 22, 34]],
+  [0.56, [34, 33, 52]],
+  [0.62, [226, 226, 236]],
+  [0.8, [242, 242, 246]],
+  [1, [250, 250, 250]],
 ]
 const DARK = {
-  ink: [232, 238, 255, 1], muted: [176, 188, 214, 1], line: [150, 180, 255, 0.18], glass: [140, 170, 255, 0.07],
-  ghi: [140, 170, 255, 0.13], c1: [61, 242, 255, 1], c2: [125, 170, 255, 1], c3: [52, 211, 153, 1],
-  bg2: [10, 15, 28, 1], card: [8, 16, 32, 0.9],
+  ink: [250, 250, 250, 1], muted: [176, 176, 186, 1], line: [255, 255, 255, 0.1], glass: [255, 255, 255, 0.04],
+  ghi: [255, 255, 255, 0.08], c1: [129, 140, 248, 1], c2: [167, 139, 250, 1], c3: [199, 210, 254, 1],
+  bg2: [17, 17, 19, 1], card: [18, 18, 21, 0.88],
 }
 const LIGHT = {
-  ink: [11, 31, 58, 1], muted: [51, 65, 85, 1], line: [11, 31, 58, 0.16], glass: [11, 31, 58, 0.04],
-  ghi: [11, 31, 58, 0.08], c1: [14, 96, 122, 1], c2: [29, 78, 216, 1], c3: [4, 108, 78, 1],
-  bg2: [232, 240, 248, 1], card: [255, 255, 255, 0.92],
+  ink: [9, 9, 11, 1], muted: [63, 63, 70, 1], line: [9, 9, 11, 0.12], glass: [9, 9, 11, 0.03],
+  ghi: [9, 9, 11, 0.06], c1: [79, 70, 229, 1], c2: [124, 58, 237, 1], c3: [55, 48, 163, 1],
+  bg2: [244, 244, 245, 1], card: [255, 255, 255, 0.92],
 }
 const VARS = {
   ink: '--ink', muted: '--muted', line: '--line', glass: '--glass', ghi: '--glass-hi',
@@ -79,13 +79,13 @@ export function useScrollTheme(dimRef) {
         root.style.colorScheme = m
         Object.assign(
           particlePalette,
-          light ? { dot: 'rgba(14,96,122,.55)', line: '29,78,216' } : { dot: 'rgba(61,242,255,.7)', line: '125,170,255' },
+          light ? { dot: 'rgba(79,70,229,.45)', line: '99,102,241' } : { dot: 'rgba(165,180,252,.6)', line: '129,140,248' },
         )
       }
 
       // Halo: none while contrast is comfortable (>= 7), rising to full near the crossover.
       const h = Math.max(0, Math.min(1, (7 - cr) / 3))
-      const o = light ? '255,255,255' : '5,10,25'
+      const o = light ? '255,255,255' : '9,9,11'
       root.style.setProperty(
         '--halo',
         h > 0 ? `0 0 2px rgba(${o},${(h * 0.9).toFixed(2)}),0 0 10px rgba(${o},${(h * 0.7).toFixed(2)})` : 'none',

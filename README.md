@@ -50,3 +50,19 @@ Animations that run every frame (particles, scroll theme, pointer effects) write
 `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on every push to `main` (Settings → Pages → Source must be **GitHub Actions**).
 
 Because this is a project repo, `vite.config.js` sets `base: '/mshrae/'`. If you rename the repo, update that value to match.
+
+## UI component libraries (Skiper UI, Vengeance UI, Animmaster Lib)
+
+These are copy-paste component collections, not npm packages. The groundwork they need is installed:
+Tailwind CSS v4 (without its CSS reset, so `global.css` is untouched), `motion`/`framer-motion`, `clsx`,
+`tailwind-merge`, the `cn()` helper in `src/lib/utils.js`, and the `@/` import alias for `src/`.
+
+- **Vengeance UI**: `npx shadcn@latest add @vengeanceui/<component>` (registry is set in `components.json`),
+  e.g. `npx shadcn@latest add @vengeanceui/animated-rays`. Files land in `src/components/ui/`.
+- **Skiper UI**: open the component on skiper-ui.com, paste its code into `src/components/ui/<name>.tsx`
+  (Vite compiles `.tsx` as-is), then import it with `@/components/ui/<name>`.
+- **Animmaster Lib**: paid; after purchase, copy the React components from the download into `src/components/ui/`.
+
+Components in use (adapted copies in `src/components/ui/`, styles in `src/styles/effects.css`):
+spotlight navbar (top nav), cyber glitch text (hero name), stagger text (hero pitch), radial glow button (LinkedIn buttons),
+stats counter (About numbers), border beam (About, current role, Highlights on hover, Contact).
