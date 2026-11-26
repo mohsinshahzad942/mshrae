@@ -2,14 +2,14 @@ import { useEffect } from 'react'
 import { particlePalette } from './particlePalette'
 
 /*
- * Scroll-linked effects. The background stays the same graphite for the whole page (one STOPS entry
- * per end), so the dark text palette is always the one picked. Add stops here to bring back a
+ * Scroll-linked effects. The background stays the same light grey for the whole page (one STOPS entry
+ * per end), so the light text palette (dark text) is always the one picked. Add stops here to bring back a
  * colour shift on scroll. Everything is written as CSS custom properties on <html>, so React never
  * re-renders on scroll.
  */
 const STOPS = [
-  [0, [9, 9, 11]],
-  [1, [9, 9, 11]],
+  [0, [250, 250, 250]],
+  [1, [250, 250, 250]],
 ]
 const DARK = {
   ink: [250, 250, 250, 1], muted: [176, 176, 186, 1], line: [255, 255, 255, 0.1], glass: [255, 255, 255, 0.04],

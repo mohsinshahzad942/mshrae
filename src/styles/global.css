@@ -1,9 +1,9 @@
-/* Layout: a single deliberately dark "control deck". Live particle field behind everything, glass panels, scroll-driven reveals; one column on phones. */
+/* Layout: a single light, clean page. Live particle field behind everything, glass panels, scroll-driven reveals; one column on phones. */
 :root{
-  color-scheme:dark;
-  --bg:#09090b; --bg2:#111113; --glass:rgba(255,255,255,.04); --glass-hi:rgba(255,255,255,.08);
-  --line:rgba(255,255,255,.1); --ink:#fafafa; --muted:#a1a1aa;
-  --c1:#818cf8; --c2:#a78bfa; --c3:#c7d2fe; --surf:9,9,11; --aur:1; --card:rgba(18,18,21,.88); --mark:#ffe36b;
+  color-scheme:light;
+  --bg:#fafafa; --bg2:#f4f4f5; --glass:rgba(9,9,11,.03); --glass-hi:rgba(9,9,11,.06);
+  --line:rgba(9,9,11,.12); --ink:#09090b; --muted:#3f3f46;
+  --c1:#4f46e5; --c2:#7c3aed; --c3:#3730a3; --surf:250,250,250; --aur:.25; --card:rgba(255,255,255,.92); --mark:#8a6100;
   --display:"Unbounded","Segoe UI",system-ui,sans-serif;
   --body:"Sora","Segoe UI",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
@@ -231,10 +231,10 @@ html.no-intro .pin > .hero{position:relative;top:auto}
 
 /* ---------- Apply for a Job floating tab ---------- */
 .apply-fab{position:fixed;right:0;top:50%;z-index:40;display:flex;align-items:center;gap:10px;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);
-  padding:20px 12px;border-radius:0 14px 14px 0;background:var(--grad);color:#09090b;font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;text-shadow:none;
+  padding:20px 12px;border-radius:0 14px 14px 0;background:var(--grad);color:#fff;font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;text-shadow:none;
   box-shadow:0 0 24px color-mix(in srgb,var(--c1) 45%,transparent);animation:fab-in .9s cubic-bezier(.2,.8,.2,1) both,fab-float 3.2s ease-in-out 1s infinite;transition:padding .2s,box-shadow .2s}
 .apply-fab:hover,.apply-fab:focus-visible{padding-right:18px;box-shadow:0 0 40px color-mix(in srgb,var(--c1) 70%,transparent)}
-.apply-fab-dot{width:8px;height:8px;border-radius:50%;background:#09090b;animation:pulse 1.4s infinite}
+.apply-fab-dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.4s infinite}
 @keyframes fab-in{from{transform:translate(-120%,-50%) rotate(180deg);opacity:0}to{transform:translateY(-50%) rotate(180deg);opacity:1}}
 @keyframes fab-float{0%,100%{transform:translateY(-50%) rotate(180deg)}50%{transform:translateY(calc(-50% - 16px)) rotate(180deg)}}
 @media (max-width:520px){.apply-fab{padding:14px 9px;font-size:.7rem}}

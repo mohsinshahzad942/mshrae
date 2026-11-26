@@ -281,7 +281,7 @@ export default function Admin() {
   ) : null
 
   return (
-    <PageShell kicker="Admin" title="Job applications" actions={signOut}>
+    <PageShell kicker="Admin" title="Job applications" actions={signOut} theme="light">
       {!isConfigured ? (
         <p className="notice">The applications database is not connected yet.</p>
       ) : session === undefined ? (
