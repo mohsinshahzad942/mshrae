@@ -14,6 +14,7 @@ import { useActiveSection } from '../hooks/useActiveSection'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useScrollTheme } from '../hooks/useScrollTheme'
 import { ApplyButton } from '../components/ApplyButton'
+import { QuickDock } from '../components/QuickDock'
 import { SHOW_INTRO } from '../data/site'
 import { useSmoothScroll } from '../lib/useSmoothScroll'
 import { useScrollScenes } from '../hooks/useScrollScenes'
@@ -39,11 +40,14 @@ export default function Home() {
 
   return (
     <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <ParticleField animate={animate} />
       {showIntro && <Intro onDone={finishIntro} />}
       <Backdrop dimRef={dimRef} />
       <Nav active={active} animate={animate} />
-      <main>
+      <main id="main">
         <div className="pin">
           <Hero animate={animate} ready={!showIntro} />
           {showIntro && <div className="pin-space" aria-hidden="true" />}
@@ -52,10 +56,11 @@ export default function Home() {
         <About animate={animate} />
         <Experience />
         <Highlights animate={animate} />
-        <Contact />
+        <Contact animate={animate} />
       </main>
       <Footer />
       <ApplyButton />
+      <QuickDock animate={animate} />
     </>
   )
 }

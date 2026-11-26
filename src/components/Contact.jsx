@@ -4,6 +4,7 @@ import { CopyButton } from './CopyButton'
 import { Panel } from './Panel'
 import { BorderBeam } from './ui/border-beam'
 import { RadialGlowButton } from './ui/radial-glow-button'
+import { Magnetic } from './ui/magnetic'
 
 function Line({ label, children }) {
   return (
@@ -14,7 +15,7 @@ function Line({ label, children }) {
   )
 }
 
-export function Contact() {
+export function Contact({ animate = true }) {
   const emailRef = useRef(null)
   const phoneRef = useRef(null)
 
@@ -62,9 +63,11 @@ export function Contact() {
               <span className="v">{profile.shortLocation}</span>
             </Line>
           </div>
-          <RadialGlowButton href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-            Message me on LinkedIn ↗
-          </RadialGlowButton>
+          <Magnetic enabled={animate}>
+            <RadialGlowButton href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+              Message me on LinkedIn ↗
+            </RadialGlowButton>
+          </Magnetic>
         </Panel>
       </div>
     </section>

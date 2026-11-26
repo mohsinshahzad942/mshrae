@@ -5,6 +5,9 @@ import photo from '../assets/photo.jpg'
 import { CyberGlitchText } from './ui/cyber-glitch-text'
 import { RadialGlowButton } from './ui/radial-glow-button'
 import { Spotlight } from './ui/spotlight'
+import { FlickeringGrid } from './ui/flickering-grid'
+import { Magnetic } from './ui/magnetic'
+import { OrbitingBadges } from './ui/orbiting-badges'
 import { StaggerText } from './ui/stagger-text'
 
 export function Hero({ animate, ready = true }) {
@@ -13,7 +16,7 @@ export function Hero({ animate, ready = true }) {
   return (
     <header className="hero" id="top">
       <div className="floor" aria-hidden="true" />
-      <div className="dot-grid" aria-hidden="true" />
+      <FlickeringGrid className="hero-flicker" animate={animate} />
       {animate && <Spotlight />}
       <div className="wrap">
         <div className="hero-copy">
@@ -42,12 +45,16 @@ export function Hero({ animate, ready = true }) {
             </StaggerText>
           </p>
           <div className="cta">
-            <RadialGlowButton href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              Connect on LinkedIn ↗
-            </RadialGlowButton>
-            <a className="btn" href="#contact">
-              Get in touch
-            </a>
+            <Magnetic enabled={animate}>
+              <RadialGlowButton href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                Connect on LinkedIn ↗
+              </RadialGlowButton>
+            </Magnetic>
+            <Magnetic enabled={animate}>
+              <a className="btn" href="#contact">
+                Get in touch
+              </a>
+            </Magnetic>
           </div>
         </div>
         <div className="orb">
@@ -57,11 +64,7 @@ export function Hero({ animate, ready = true }) {
             <img src={photo} alt={profile.name} width="520" height="520" fetchPriority="high" />
             <div className="scan" />
           </div>
-          {profile.orbTags.map((tag, i) => (
-            <span key={tag} className={`tag t${i + 1}`} aria-hidden="true">
-              {tag}
-            </span>
-          ))}
+          <OrbitingBadges items={profile.orbit} />
         </div>
       </div>
     </header>

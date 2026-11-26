@@ -16,6 +16,8 @@ export const profile = {
   phone: '+971 52 854 9253',
   whatsapp: 'https://wa.me/971528549253',
   orbTags: ['◆ 9+ yrs in HR', '◆ WPS · EOSB'],
+  // Labels that slowly circle the portrait.
+  orbit: ['9+ yrs in HR', 'Payroll', 'WPS · EOSB', 'HRMS / ERP', 'UAE Labour Law'],
 }
 
 // Set to true to bring back the "HR" zoom-through opening scene.

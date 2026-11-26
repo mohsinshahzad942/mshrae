@@ -3,8 +3,8 @@ import { particlePalette } from '../hooks/particlePalette'
 
 // Density: one particle per AREA_PER_PARTICLE square pixels of screen, capped at MAX_PARTICLES.
 // Lower the area (or raise the cap) for a busier background.
-const AREA_PER_PARTICLE = 7000
-const MAX_PARTICLES = 220
+const AREA_PER_PARTICLE = 11000
+const MAX_PARTICLES = 140
 
 /** Drifting particle network on a full-screen canvas; particles shy away from the pointer. */
 export function ParticleField({ animate = true }) {
@@ -68,7 +68,7 @@ export function ParticleField({ animate = true }) {
           }
         }
       }
-      if (animate) frame = requestAnimationFrame(draw)
+      if (animate && !document.hidden) frame = requestAnimationFrame(draw)
     }
 
     const onResize = () => {
@@ -80,12 +80,19 @@ export function ParticleField({ animate = true }) {
       mouse.y = e.clientY * DPR
     }
 
+    // Stop drawing while the tab is in the background; resume when it comes back.
+    const onVisibility = () => {
+      cancelAnimationFrame(frame)
+      if (!document.hidden) draw()
+    }
     size()
     draw()
+    document.addEventListener('visibilitychange', onVisibility)
     addEventListener('resize', onResize)
     addEventListener('pointermove', onPointer)
     return () => {
       cancelAnimationFrame(frame)
+      document.removeEventListener('visibilitychange', onVisibility)
       removeEventListener('resize', onResize)
       removeEventListener('pointermove', onPointer)
     }
