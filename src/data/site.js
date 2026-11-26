@@ -18,6 +18,9 @@ export const profile = {
   orbTags: ['◆ 9+ yrs in HR', '◆ WPS · EOSB'],
 }
 
+// Set to true to bring back the "HR" zoom-through opening scene.
+export const SHOW_INTRO = false
+
 export const intro = {
   quote: ['doesn’t just manage the workforce.', 'It protects it.'],
   subtitle: 'Human Resources · Abu Dhabi',

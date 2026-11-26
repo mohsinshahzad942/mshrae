@@ -9,7 +9,7 @@ import { intro, profile } from '../data/site'
  */
 const HR_CENTRE = { x: 500, y: 205 }
 const C0 = [5, 7, 13]
-const C1 = [12, 34, 66]
+const C1 = [58, 51, 48]
 
 export function Intro({ onDone }) {
   const introRef = useRef(null)
@@ -95,7 +95,7 @@ export function Intro({ onDone }) {
           textAnchor="middle"
           dominantBaseline="central"
           fontSize="330"
-          fill="#09090b"
+          fill="#3a3330"
         >
           HR
         </text>

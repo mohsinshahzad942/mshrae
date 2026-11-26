@@ -9,18 +9,25 @@ export function Highlights({ animate }) {
   return (
     <section className="block" id="highlights">
       <div className="wrap">
-        <SectionHead index="03" caption="core expertise">
-          High<span className="grad">lights</span>
-        </SectionHead>
-        <div className="hl xgrid">
-          {highlights.map(({ title, text }, i) => (
-            <Panel as="article" key={title} tilt={animate} className={`xp reveal beam-host ${DELAYS[i % 3]}`}>
-              <BorderBeam className="beam-hover" size={140} duration={6} />
-              <span className="xn">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </Panel>
-          ))}
+        <div className="hl-pin">
+          <SectionHead index="03" caption="core expertise">
+            High<span className="grad">lights</span>
+          </SectionHead>
+          <div className="hl-viewport">
+            <div className="hl xgrid hl-rail">
+              {highlights.map(({ title, text }, i) => (
+                <Panel as="article" key={title} tilt={animate} className={`xp reveal beam-host ${DELAYS[i % 3]}`}>
+                  <BorderBeam className="beam-hover" size={140} duration={6} />
+                  <span className="xn">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </Panel>
+              ))}
+            </div>
+          </div>
+          <div className="hl-progress" aria-hidden="true">
+            <i />
+          </div>
         </div>
         <div className="sub">
           <Panel className="reveal">

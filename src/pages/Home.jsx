@@ -14,6 +14,9 @@ import { useActiveSection } from '../hooks/useActiveSection'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { useScrollTheme } from '../hooks/useScrollTheme'
 import { ApplyButton } from '../components/ApplyButton'
+import { SHOW_INTRO } from '../data/site'
+import { useSmoothScroll } from '../lib/useSmoothScroll'
+import { useScrollScenes } from '../hooks/useScrollScenes'
 
 // Play the intro once per visit, not every time someone comes back from /apply.
 let introSeen = false
@@ -26,11 +29,13 @@ export default function Home() {
     introSeen = true
     setIntroDone(true)
   }, [])
-  const showIntro = animate && !introDone
+  const showIntro = SHOW_INTRO && animate && !introDone
 
   const dimRef = useRef(null)
   useScrollTheme(dimRef)
   const active = useActiveSection()
+  useSmoothScroll(animate && !showIntro)
+  useScrollScenes(animate && !showIntro)
 
   return (
     <>

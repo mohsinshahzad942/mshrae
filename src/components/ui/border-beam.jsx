@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 /**
  * A light that travels around its parent's border. The parent needs `position: relative`.
  * Adapted from Vengeance UI's BorderBeam (vengenceui.com): keyframes moved to tailwind.css (no styled-jsx in Vite),
- * colours default to the site's indigo → violet palette.
+ * colours default to the site's teal palette.
  */
 export function BorderBeam({
   className,
