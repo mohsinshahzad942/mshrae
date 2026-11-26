@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger)
  * - cards rise out of a blur in staggered batches
  * - the skills ticker speeds up and skews with scroll velocity
  * - the experience timeline's beam fills as you read, lighting each dot it passes
- * - on wide screens, Highlights pins and its cards slide past horizontally
  * Everything is reverted on unmount, and nothing runs when `enabled` is false (reduced motion).
  */
 export function useScrollScenes(enabled) {
@@ -135,29 +134,6 @@ export function useScrollScenes(enabled) {
             ScrollTrigger.create({ trigger: li, start: 'top 65%', toggleClass: { targets: li, className: 'lit' } }),
           )
       }
-
-      // Highlights: pinned horizontal scroll on wide screens
-      mm.add('(min-width: 1000px)', () => {
-        const pin = document.querySelector('.hl-pin')
-        const rail = document.querySelector('.hl-rail')
-        if (!pin || !rail) return
-        pin.classList.add('horizontal')
-        const distance = () => rail.scrollWidth - rail.parentElement.clientWidth
-        gsap.to(rail, {
-          x: () => -distance(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: pin,
-            start: 'top 80px',
-            end: () => `+=${distance()}`,
-            pin: true,
-            scrub: 0.8,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => pin.style.setProperty('--hl-progress', self.progress.toFixed(3)),
-          },
-        })
-        return () => pin.classList.remove('horizontal')
-      })
     })
 
     // Fonts and images change layout after first paint; re-measure once they settle.
