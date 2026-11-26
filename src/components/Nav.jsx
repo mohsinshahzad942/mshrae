@@ -1,6 +1,7 @@
 import { navLinks, profile } from '../data/site'
+import { SpotlightNavbar } from './ui/spotlight-navbar'
 
-export function Nav({ active }) {
+export function Nav({ active, animate = true }) {
   return (
     <nav aria-label="Main">
       <div className="wrap">
@@ -8,19 +9,7 @@ export function Nav({ active }) {
           <i />
           {profile.logo}
         </span>
-        <ul>
-          {navLinks.map(({ id, label }) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className={active === id ? 'on' : undefined}
-                aria-current={active === id ? 'location' : undefined}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <SpotlightNavbar items={navLinks} activeId={active} animated={animate} />
       </div>
       <div className="progress" aria-hidden="true" />
     </nav>

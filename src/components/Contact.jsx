@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import { contact, profile } from '../data/site'
 import { CopyButton } from './CopyButton'
 import { Panel } from './Panel'
+import { BorderBeam } from './ui/border-beam'
+import { RadialGlowButton } from './ui/radial-glow-button'
 
 function Line({ label, children }) {
   return (
@@ -19,7 +21,9 @@ export function Contact() {
   return (
     <section className="block contact" id="contact">
       <div className="wrap">
-        <Panel className="reveal">
+        <Panel className="reveal beam-host">
+          <BorderBeam duration={18} size={300} />
+          <BorderBeam duration={18} size={300} delay={9} colorFrom="var(--c3)" colorTo="var(--c1)" />
           <span className="label">
             <b>04</b> / contact
           </span>
@@ -58,9 +62,9 @@ export function Contact() {
               <span className="v">{profile.shortLocation}</span>
             </Line>
           </div>
-          <a className="btn primary" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+          <RadialGlowButton href={profile.linkedin} target="_blank" rel="noopener noreferrer">
             Message me on LinkedIn ↗
-          </a>
+          </RadialGlowButton>
         </Panel>
       </div>
     </section>

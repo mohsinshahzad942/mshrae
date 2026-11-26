@@ -95,7 +95,7 @@ export function Intro({ onDone }) {
           textAnchor="middle"
           dominantBaseline="central"
           fontSize="330"
-          fill="#05070d"
+          fill="#09090b"
         >
           HR
         </text>

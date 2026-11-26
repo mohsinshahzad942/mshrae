@@ -1,0 +1,58 @@
+/* Styles for the Vengeance UI components in src/components/ui (border beam, radial glow button, spotlight nav). */
+
+@keyframes border-beam{100%{offset-distance:100%}}
+
+/* Panels with a border beam: keep the beam above the glass but below the content. */
+.beam-host{position:relative;isolation:isolate}
+.beam-host>.beam-hover{opacity:0;transition:opacity .4s}
+.beam-host:hover>.beam-hover,.beam-host:focus-within>.beam-hover{opacity:1}
+
+/* Spotlight navbar: a floating glass pill. */
+.spotlight-nav{background:color-mix(in srgb,var(--glass-hi) 60%,transparent);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 30px rgba(0,0,0,.25)}
+.spotlight-nav a{display:block;padding:8px 14px;border-radius:999px;background:none!important}
+.spotlight-nav a.on{color:var(--ink)}
+
+/* Radial glow button */
+@property --rg-pos-x{syntax:'<percentage>';initial-value:40%;inherits:false}
+@property --rg-pos-y{syntax:'<percentage>';initial-value:140%;inherits:false}
+@property --rg-spread-x{syntax:'<percentage>';initial-value:130%;inherits:false}
+@property --rg-spread-y{syntax:'<percentage>';initial-value:170%;inherits:false}
+@property --rg-color-1{syntax:'<color>';initial-value:#09090b;inherits:false}
+@property --rg-color-2{syntax:'<color>';initial-value:#312e81;inherits:false}
+@property --rg-color-3{syntax:'<color>';initial-value:#6366f1;inherits:false}
+@property --rg-color-4{syntax:'<color>';initial-value:#e0e7ff;inherits:false}
+@property --rg-color-5{syntax:'<color>';initial-value:hsl(240 6% 4%);inherits:false}
+@property --rg-border-angle{syntax:'<angle>';initial-value:180deg;inherits:true}
+@property --rg-border-color-1{syntax:'<color>';initial-value:hsla(234,90%,88%,.7);inherits:true}
+@property --rg-border-color-2{syntax:'<color>';initial-value:hsla(240,10%,90%,.2);inherits:true}
+@property --rg-stop-1{syntax:'<percentage>';initial-value:37.35%;inherits:false}
+@property --rg-stop-2{syntax:'<percentage>';initial-value:61.36%;inherits:false}
+@property --rg-stop-3{syntax:'<percentage>';initial-value:78.42%;inherits:false}
+@property --rg-stop-4{syntax:'<percentage>';initial-value:93.52%;inherits:false}
+@property --rg-stop-5{syntax:'<percentage>';initial-value:100%;inherits:false}
+
+.rg-button{
+  --speed:1.2s;--cut:1px;
+  --bg:radial-gradient(var(--rg-spread-x) var(--rg-spread-y) at var(--rg-pos-x) var(--rg-pos-y),var(--rg-color-1) var(--rg-stop-1),var(--rg-color-2) var(--rg-stop-2),var(--rg-color-3) var(--rg-stop-3),var(--rg-color-4) var(--rg-stop-4),var(--rg-color-5) var(--rg-stop-5));
+  position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:15px 26px;border:none;border-radius:999px;
+  font-family:var(--mono);font-size:.82rem;font-weight:500;letter-spacing:.06em;line-height:1.2;color:rgba(255,255,255,.96);text-decoration:none;
+  background:var(--bg);cursor:pointer;text-shadow:0 0 2px rgba(0,0,0,.9);overflow:hidden;-webkit-tap-highlight-color:transparent;
+  box-shadow:0 0 0 0 transparent;
+  transition:--rg-pos-x .75s,--rg-pos-y .75s,--rg-spread-x .75s,--rg-spread-y .75s,--rg-color-1 .75s,--rg-color-2 .75s,--rg-color-3 .75s,--rg-color-4 .75s,--rg-color-5 .75s,--rg-border-angle .75s,--rg-border-color-1 .75s,--rg-border-color-2 .75s,--rg-stop-1 .75s,--rg-stop-2 .75s,--rg-stop-3 .75s,--rg-stop-4 .75s,--rg-stop-5 .75s,box-shadow .4s,transform .2s;
+}
+.rg-button::before{content:'';position:absolute;inset:0;padding:1px;border-radius:inherit;background-image:linear-gradient(var(--rg-border-angle),var(--rg-border-color-1),var(--rg-border-color-2));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:2}
+.rg-button:hover,.rg-button:focus-visible{
+  --rg-pos-x:0%;--rg-pos-y:120%;--rg-spread-x:110.24%;--rg-spread-y:110.2%;
+  --rg-color-1:#09090b;--rg-color-2:#e0e7ff;--rg-color-3:#6366f1;--rg-color-4:#312e81;
+  --rg-stop-1:0%;--rg-stop-2:10%;--rg-stop-3:35.44%;--rg-stop-4:71.34%;--rg-stop-5:150%;
+  --rg-border-angle:190deg;--rg-border-color-1:hsla(234,90%,90%,.15);--rg-border-color-2:hsla(234,80%,90%,.45);
+  --button-line-opacity:1;box-shadow:0 0 32px color-mix(in srgb,var(--c1) 35%,transparent)
+}
+.rg-label{position:relative;z-index:1}
+.rg-bg{position:absolute;inset:var(--cut);background:var(--bg);border-radius:inherit}
+.rg-shine{position:absolute;inset:0;container-type:size;border-radius:inherit;mix-blend-mode:soft-light;opacity:var(--button-line-opacity,0);transition:opacity .3s;overflow:visible;z-index:1}
+.rg-shine span{position:absolute;inset:0;height:100cqh;aspect-ratio:1;animation:rg-slide var(--speed) ease-in-out infinite alternate}
+.rg-shine span::before{content:"";position:absolute;inset:-100%;background:conic-gradient(from 225deg,transparent 0,#fff 90deg,transparent 90deg);animation:rg-spin calc(var(--speed)*2) infinite linear}
+@keyframes rg-spin{0%{rotate:0deg}15%,35%{rotate:90deg}65%,85%{rotate:270deg}100%{rotate:360deg}}
+@keyframes rg-slide{to{transform:translate(calc(100cqw - 100%),0)}}
+@media (max-width:680px){.spotlight-nav{display:none}}

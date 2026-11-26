@@ -1,6 +1,7 @@
 import { education, highlights, skills } from '../data/site'
 import { Panel } from './Panel'
 import { SectionHead } from './SectionHead'
+import { BorderBeam } from './ui/border-beam'
 
 const DELAYS = ['', 'd1', 'd2']
 
@@ -13,7 +14,8 @@ export function Highlights({ animate }) {
         </SectionHead>
         <div className="hl xgrid">
           {highlights.map(({ title, text }, i) => (
-            <Panel as="article" key={title} tilt={animate} className={`xp reveal ${DELAYS[i % 3]}`}>
+            <Panel as="article" key={title} tilt={animate} className={`xp reveal beam-host ${DELAYS[i % 3]}`}>
+              <BorderBeam className="beam-hover" size={140} duration={6} />
               <span className="xn">{String(i + 1).padStart(2, '0')}</span>
               <h3>{title}</h3>
               <p>{text}</p>
