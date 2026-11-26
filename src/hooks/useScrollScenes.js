@@ -78,6 +78,30 @@ export function useScrollScenes(enabled) {
           }),
       })
 
+      // Skills chips pop in one after another
+      gsap.utils.toArray('.chips').forEach((list) =>
+        gsap.from(list.children, {
+          scale: 0.6,
+          opacity: 0,
+          y: 12,
+          duration: 0.5,
+          stagger: 0.035,
+          ease: 'back.out(2)',
+          scrollTrigger: { trigger: list, start: 'top 85%', once: true },
+        }),
+      )
+
+      // Background colour fields drift at different speeds as you scroll (depth)
+      gsap.utils.toArray('.aurora i').forEach((blob, i) =>
+        // Tween CSS variables (read by the `translate` property) so the blobs' own CSS drift keeps running.
+        gsap.to(blob, {
+          '--py': ['-22vh', '18vh', '-34vh'][i % 3],
+          '--px': ['6vw', '-8vw', '10vw'][i % 3],
+          ease: 'none',
+          scrollTrigger: { start: 0, end: 'max', scrub: 1.2 },
+        }),
+      )
+
       // Ticker: constant drift, boosted and skewed by scroll velocity
       const track = document.querySelector('.marquee .track')
       if (track) {
