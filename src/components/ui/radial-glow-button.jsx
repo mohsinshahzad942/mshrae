@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 /**
  * Button with a radial "planet-rise" gradient that shifts on hover, a gradient hairline border and a sweeping shine.
  * Adapted from Vengeance UI's RadialGlowButton (vengenceui.com): the CSS lives in tailwind.css (loaded once instead
- * of per button), colours use the site's indigo/violet, and `href` renders it as a link.
+ * of per button), colours use the site's teal/coral, and `href` renders it as a link.
  */
 export function RadialGlowButton({ href, children, className, ...props }) {
   const Tag = href ? 'a' : 'button'

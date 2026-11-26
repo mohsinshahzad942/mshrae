@@ -17,14 +17,14 @@
 @property --rg-pos-y{syntax:'<percentage>';initial-value:140%;inherits:false}
 @property --rg-spread-x{syntax:'<percentage>';initial-value:130%;inherits:false}
 @property --rg-spread-y{syntax:'<percentage>';initial-value:170%;inherits:false}
-@property --rg-color-1{syntax:'<color>';initial-value:#09090b;inherits:false}
-@property --rg-color-2{syntax:'<color>';initial-value:#312e81;inherits:false}
-@property --rg-color-3{syntax:'<color>';initial-value:#6366f1;inherits:false}
-@property --rg-color-4{syntax:'<color>';initial-value:#e0e7ff;inherits:false}
-@property --rg-color-5{syntax:'<color>';initial-value:hsl(240 6% 4%);inherits:false}
+@property --rg-color-1{syntax:'<color>';initial-value:#3a3330;inherits:false}
+@property --rg-color-2{syntax:'<color>';initial-value:#0f766e;inherits:false}
+@property --rg-color-3{syntax:'<color>';initial-value:#2a9d8f;inherits:false}
+@property --rg-color-4{syntax:'<color>';initial-value:#fde8dc;inherits:false}
+@property --rg-color-5{syntax:'<color>';initial-value:hsl(174 40% 8%);inherits:false}
 @property --rg-border-angle{syntax:'<angle>';initial-value:180deg;inherits:true}
-@property --rg-border-color-1{syntax:'<color>';initial-value:hsla(234,90%,88%,.7);inherits:true}
-@property --rg-border-color-2{syntax:'<color>';initial-value:hsla(240,10%,90%,.2);inherits:true}
+@property --rg-border-color-1{syntax:'<color>';initial-value:hsla(170,60%,85%,.7);inherits:true}
+@property --rg-border-color-2{syntax:'<color>';initial-value:hsla(30,40%,90%,.25);inherits:true}
 @property --rg-stop-1{syntax:'<percentage>';initial-value:37.35%;inherits:false}
 @property --rg-stop-2{syntax:'<percentage>';initial-value:61.36%;inherits:false}
 @property --rg-stop-3{syntax:'<percentage>';initial-value:78.42%;inherits:false}
@@ -43,9 +43,9 @@
 .rg-button::before{content:'';position:absolute;inset:0;padding:1px;border-radius:inherit;background-image:linear-gradient(var(--rg-border-angle),var(--rg-border-color-1),var(--rg-border-color-2));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:2}
 .rg-button:hover,.rg-button:focus-visible{
   --rg-pos-x:0%;--rg-pos-y:120%;--rg-spread-x:110.24%;--rg-spread-y:110.2%;
-  --rg-color-1:#09090b;--rg-color-2:#e0e7ff;--rg-color-3:#6366f1;--rg-color-4:#312e81;
+  --rg-color-1:#3a3330;--rg-color-2:#fde8dc;--rg-color-3:#2a9d8f;--rg-color-4:#0f766e;
   --rg-stop-1:0%;--rg-stop-2:10%;--rg-stop-3:35.44%;--rg-stop-4:71.34%;--rg-stop-5:150%;
-  --rg-border-angle:190deg;--rg-border-color-1:hsla(234,90%,90%,.15);--rg-border-color-2:hsla(234,80%,90%,.45);
+  --rg-border-angle:190deg;--rg-border-color-1:hsla(170,60%,90%,.15);--rg-border-color-2:hsla(20,80%,85%,.45);
   --button-line-opacity:1;box-shadow:0 0 32px color-mix(in srgb,var(--c1) 35%,transparent)
 }
 .rg-label{position:relative;z-index:1}
@@ -56,3 +56,46 @@
 @keyframes rg-spin{0%{rotate:0deg}15%,35%{rotate:90deg}65%,85%{rotate:270deg}100%{rotate:360deg}}
 @keyframes rg-slide{to{transform:translate(calc(100cqw - 100%),0)}}
 @media (max-width:680px){.spotlight-nav{display:none}}
+
+/* ---------- Scroll scenes (GSAP ScrollTrigger + Lenis) ---------- */
+/* GSAP takes over the reveals from the CSS scroll-timeline version. */
+html.gsap-on .reveal{animation:none}
+html.gsap-on .track{animation:none}
+
+/* Hero: dot grid fading out from the centre, and a sweeping spotlight */
+.dot-grid{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(color-mix(in srgb,var(--c1) 35%,transparent) 1px,transparent 1.4px);background-size:26px 26px;
+  -webkit-mask:radial-gradient(ellipse 70% 60% at 50% 40%,#000 20%,transparent 75%);mask:radial-gradient(ellipse 70% 60% at 50% 40%,#000 20%,transparent 75%)}
+.spotlight{position:absolute;z-index:-1;pointer-events:none;top:-40%;left:0;width:138%;height:169%;opacity:0;animation:spotlight 2.2s ease .4s 1 forwards}
+@keyframes spotlight{from{opacity:0;transform:translate(-72%,-62%) scale(.5)}to{opacity:1;transform:translate(-50%,-40%) scale(1)}}
+@media (min-width:1000px){.spotlight{left:12%;top:-30%}}
+
+/* About: words light up as you scroll */
+.w{display:inline;transition:none}
+
+/* Experience: a beam that fills down the timeline, lighting each dot it passes */
+.timeline-wrap{position:relative}
+.timeline-wrap .trace{display:none}
+html.gsap-on .timeline-wrap .trace{display:block;position:absolute;left:8px;top:6px;bottom:6px;width:2px;border-radius:2px;z-index:1;transform-origin:top;
+  background:linear-gradient(var(--c1),var(--c2),var(--c3));box-shadow:0 0 14px var(--c1),0 0 2px var(--c1)}
+html.gsap-on .timeline::before{background:var(--line);box-shadow:none}
+html.gsap-on .timeline > li::before{border-color:var(--line);box-shadow:none;transition:border-color .4s,box-shadow .4s,transform .4s}
+html.gsap-on .timeline > li.lit::before{border-color:var(--c1);box-shadow:0 0 0 4px color-mix(in srgb,var(--c1) 18%,transparent),0 0 16px var(--c1);transform:scale(1.15)}
+
+/* Highlights: pinned, cards slide past horizontally (wide screens only) */
+.hl-progress{display:none}
+.hl-pin.horizontal .hl-viewport{overflow:visible;margin-inline:calc(50% - 50vw);padding-inline:calc(50vw - 50%)}
+.hl-pin.horizontal .hl-rail{display:flex;width:max-content;gap:24px;padding-block:8px}
+.hl-pin.horizontal .hl-rail{align-items:stretch}
+.hl-pin.horizontal .hl-rail > .panel{width:360px;flex:none;min-height:0}
+.hl-pin.horizontal{min-height:calc(100vh - 110px);display:flex;flex-direction:column;justify-content:center}
+.hl-pin.horizontal .hl-progress{display:block;height:2px;margin-top:28px;border-radius:2px;background:var(--line);overflow:hidden}
+.hl-pin.horizontal .hl-progress i{display:block;height:100%;background:var(--grad);transform-origin:left;transform:scaleX(var(--hl-progress,0))}
+.hl-pin.horizontal{overflow:visible}
+section#highlights{overflow-x:clip}
+
+/* Route changes: blur-fade between the home page and the job pages */
+.route{min-height:100vh}
+.curtain{position:fixed;inset:0;z-index:100;pointer-events:none;background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 4px),
+  linear-gradient(110deg,#3a3330 0%,#0f766e 45%,var(--c2) 75%,var(--c3) 100%)}

@@ -2,24 +2,24 @@ import { useEffect } from 'react'
 import { particlePalette } from './particlePalette'
 
 /*
- * Scroll-linked effects. The background stays the same light grey for the whole page (one STOPS entry
+ * Scroll-linked effects. The background stays the same warm ivory for the whole page (one STOPS entry
  * per end), so the light text palette (dark text) is always the one picked. Add stops here to bring back a
  * colour shift on scroll. Everything is written as CSS custom properties on <html>, so React never
  * re-renders on scroll.
  */
 const STOPS = [
-  [0, [250, 250, 250]],
-  [1, [250, 250, 250]],
+  [0, [250, 247, 242]],
+  [1, [250, 247, 242]],
 ]
 const DARK = {
   ink: [250, 250, 250, 1], muted: [176, 176, 186, 1], line: [255, 255, 255, 0.1], glass: [255, 255, 255, 0.04],
-  ghi: [255, 255, 255, 0.08], c1: [129, 140, 248, 1], c2: [167, 139, 250, 1], c3: [199, 210, 254, 1],
-  bg2: [17, 17, 19, 1], card: [18, 18, 21, 0.88],
+  ghi: [255, 255, 255, 0.08], c1: [94, 214, 196, 1], c2: [244, 162, 131, 1], c3: [233, 196, 106, 1],
+  bg2: [17, 28, 27, 1], card: [18, 30, 29, 0.88],
 }
 const LIGHT = {
-  ink: [9, 9, 11, 1], muted: [63, 63, 70, 1], line: [9, 9, 11, 0.12], glass: [9, 9, 11, 0.03],
-  ghi: [9, 9, 11, 0.06], c1: [79, 70, 229, 1], c2: [124, 58, 237, 1], c3: [55, 48, 163, 1],
-  bg2: [244, 244, 245, 1], card: [255, 255, 255, 0.92],
+  ink: [58, 51, 48, 1], muted: [111, 101, 96, 1], line: [58, 51, 48, 0.12], glass: [58, 51, 48, 0.03],
+  ghi: [58, 51, 48, 0.06], c1: [15, 118, 110, 1], c2: [42, 157, 143, 1], c3: [231, 111, 81, 1],
+  bg2: [243, 238, 230, 1], card: [255, 255, 255, 0.92],
 }
 const VARS = {
   ink: '--ink', muted: '--muted', line: '--line', glass: '--glass', ghi: '--glass-hi',
@@ -74,7 +74,7 @@ export function useScrollTheme(dimRef) {
         root.style.colorScheme = m
         Object.assign(
           particlePalette,
-          light ? { dot: 'rgba(79,70,229,.45)', line: '99,102,241' } : { dot: 'rgba(165,180,252,.6)', line: '129,140,248' },
+          light ? { dot: 'rgba(15,118,110,.45)', line: '42,157,143' } : { dot: 'rgba(15,118,110,.45)', line: '42,157,143' },
         )
       }
 

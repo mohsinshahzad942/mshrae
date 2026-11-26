@@ -3,6 +3,7 @@ import { Panel } from './Panel'
 import { SectionHead } from './SectionHead'
 import { Stat } from './Stat'
 import { BorderBeam } from './ui/border-beam'
+import { ScrollTextReveal } from './ui/scroll-text-reveal'
 
 export function About({ animate }) {
   return (
@@ -15,7 +16,9 @@ export function About({ animate }) {
           <Panel className="reveal beam-host">
             <BorderBeam duration={14} />
             {about.paragraphs.map((p) => (
-              <p key={p.slice(0, 24)}>{p}</p>
+              <ScrollTextReveal key={p.slice(0, 24)} enabled={animate}>
+                {p}
+              </ScrollTextReveal>
             ))}
           </Panel>
           <div className="stats">

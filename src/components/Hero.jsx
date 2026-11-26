@@ -4,6 +4,7 @@ import { useTypewriter } from '../hooks/useTypewriter'
 import photo from '../assets/photo.jpg'
 import { CyberGlitchText } from './ui/cyber-glitch-text'
 import { RadialGlowButton } from './ui/radial-glow-button'
+import { Spotlight } from './ui/spotlight'
 import { StaggerText } from './ui/stagger-text'
 
 export function Hero({ animate, ready = true }) {
@@ -12,8 +13,10 @@ export function Hero({ animate, ready = true }) {
   return (
     <header className="hero" id="top">
       <div className="floor" aria-hidden="true" />
+      <div className="dot-grid" aria-hidden="true" />
+      {animate && <Spotlight />}
       <div className="wrap">
-        <div>
+        <div className="hero-copy">
           <span className="status label">
             <i />
             {profile.location}
