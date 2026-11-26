@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 /**
  * Tracks the section crossing the middle of the viewport. Also writes it to
- * <body data-scene>, which the CSS uses to shift the aurora colours per section.
+ * <body data-scene>, so CSS can style per section if needed.
  */
 export function useActiveSection(selector = 'section[id], header#top') {
   const [active, setActive] = useState('top')

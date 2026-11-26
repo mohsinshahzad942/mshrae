@@ -2,19 +2,14 @@ import { useEffect } from 'react'
 import { particlePalette } from './particlePalette'
 
 /*
- * Scroll-linked theme: the background walks graphite → deep indigo, then crosses quickly to pale grey → white.
- * Text never fades with it: each frame picks whichever text palette has the higher contrast against the
- * current background (no blending), and a soft halo is added only while the background is mid-tone.
- * Everything is written as CSS custom properties on <html>, so React never re-renders on scroll.
+ * Scroll-linked effects. The background stays the same graphite for the whole page (one STOPS entry
+ * per end), so the dark text palette is always the one picked. Add stops here to bring back a
+ * colour shift on scroll. Everything is written as CSS custom properties on <html>, so React never
+ * re-renders on scroll.
  */
 const STOPS = [
   [0, [9, 9, 11]],
-  [0.22, [14, 14, 20]],
-  [0.48, [22, 22, 34]],
-  [0.56, [34, 33, 52]],
-  [0.62, [226, 226, 236]],
-  [0.8, [242, 242, 246]],
-  [1, [250, 250, 250]],
+  [1, [9, 9, 11]],
 ]
 const DARK = {
   ink: [250, 250, 250, 1], muted: [176, 176, 186, 1], line: [255, 255, 255, 0.1], glass: [255, 255, 255, 0.04],

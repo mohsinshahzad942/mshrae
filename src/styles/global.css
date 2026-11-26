@@ -135,10 +135,6 @@ footer .wrap{padding-block:32px;display:flex;justify-content:space-between;flex-
 @property --a2{syntax:'<color>';inherits:true;initial-value:#8b5cf6}
 @property --a3{syntax:'<color>';inherits:true;initial-value:#3f3f46}
 body{--a1:#6366f1;--a2:#3f3f46;--a3:#8b5cf6;transition:--a1 1.4s ease,--a2 1.4s ease,--a3 1.4s ease}
-body[data-scene=about]{--a1:#4f46e5;--a2:#8b5cf6;--a3:#27272a}
-body[data-scene=experience]{--a1:#7c3aed;--a2:#3f3f46;--a3:#6366f1}
-body[data-scene=highlights]{--a1:#6366f1;--a2:#a78bfa;--a3:#27272a}
-body[data-scene=contact]{--a1:#818cf8;--a2:#3f3f46;--a3:#7c3aed}
 .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .aurora i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.28;mix-blend-mode:screen}
 .aurora .b1{background:radial-gradient(circle,var(--a1),transparent 65%);top:-20vmax;left:-15vmax;animation:drift1 22s ease-in-out infinite alternate}
